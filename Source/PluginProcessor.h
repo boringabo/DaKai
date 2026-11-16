@@ -11,6 +11,8 @@
 #include <JuceHeader.h>
 #include "DSP/Gain.h"
 #include "DSP/Bitcrusher.h"
+#include "DSP/Bandwidth.h"
+#include "DSP/LPF_Biquad.h"
 
 //==============================================================================
 /**
@@ -64,6 +66,8 @@ private:
     Gain inputGain;
     Gain outputGain;
     Bitcrusher bitcrusher;
+    LPF_Biquad aaFilter;
+    Bandwidth bandwidth;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DaKaiAudioProcessor)

@@ -13,10 +13,14 @@
       <FILE id="BqBsxK" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
     <GROUP id="{927AFC02-61D7-4E02-0DB0-23544451C762}" name="DSP">
+      <FILE id="Y8sQun" name="Bandwidth.cpp" compile="1" resource="0" file="Source/DSP/Bandwidth.cpp"/>
+      <FILE id="dpTED8" name="Bandwidth.h" compile="0" resource="0" file="Source/DSP/Bandwidth.h"/>
       <FILE id="qvAgbr" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/DSP/Bitcrusher.cpp"/>
       <FILE id="a7sdyd" name="Bitcrusher.h" compile="0" resource="0" file="Source/DSP/Bitcrusher.h"/>
       <FILE id="uVptfI" name="Gain.cpp" compile="1" resource="0" file="Source/DSP/Gain.cpp"/>
       <FILE id="qXJGME" name="Gain.h" compile="0" resource="0" file="Source/DSP/Gain.h"/>
+      <FILE id="RFtbkd" name="LPF_Biquad.cpp" compile="1" resource="0" file="Source/DSP/LPF_Biquad.cpp"/>
+      <FILE id="BEosSb" name="LPF_Biquad.h" compile="0" resource="0" file="Source/DSP/LPF_Biquad.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
