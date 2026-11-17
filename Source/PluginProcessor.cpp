@@ -32,27 +32,34 @@ DaKaiAudioProcessor::~DaKaiAudioProcessor()
 juce::AudioProcessorValueTreeState::ParameterLayout DaKaiAudioProcessor::createParameters()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout parameters;
-
+    
+    // Input Gain
+    //
     parameters.add(std::make_unique<juce::AudioParameterFloat> (
                 juce::ParameterID("inputGain", 1),
                 "Input Gain",
                 0.0f,
                 2.0f,
                 1.0f));
-    
+
+    // Bandwidth
+    //
+    juce::NormalisableRange<float> bandwidthRange(7500.0f, 44100.0f, 1.0f);
+    bandwidthRange.setSkewForCentre(16000.0f);
+    parameters.add(std::make_unique<juce::AudioParameterFloat> (
+                juce::ParameterID("bandwidth", 1),
+                "Bandwidth",
+                bandwidthRange,
+                44100.0f));
+
+    // Out Gain
+    //
     parameters.add(std::make_unique<juce::AudioParameterFloat> (
                 juce::ParameterID("outputGain", 1),
                 "Output Gain",
                 0.0f,
                 2.0f,
                 1.0f));
-
-    parameters.add(std::make_unique<juce::AudioParameterFloat> (
-                juce::ParameterID("bandwidth", 1),
-                "Bandwidth",
-                7500.0f,
-                44100.0f,
-                44100.0f));
 
     return parameters;
 }
@@ -197,7 +204,8 @@ bool DaKaiAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* DaKaiAudioProcessor::createEditor()
 {
-    return new DaKaiAudioProcessorEditor (*this);
+   return new juce::GenericAudioProcessorEditor (*this);
+   // return new DaKaiAudioProcessorEditor (*this);
 }
 
 //==============================================================================
