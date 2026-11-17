@@ -47,6 +47,13 @@ juce::AudioProcessorValueTreeState::ParameterLayout DaKaiAudioProcessor::createP
                 2.0f,
                 1.0f));
 
+    parameters.add(std::make_unique<juce::AudioParameterFloat> (
+                juce::ParameterID("bandwidth", 1),
+                "Bandwidth",
+                44100.0f,
+                7500.0f,
+                44100.0f));
+
     return parameters;
 }
 //==============================================================================
@@ -157,6 +164,7 @@ void DaKaiAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     updateParameters();
     inputGain.process(buffer);
     bitcrusher.process(buffer);
+    bandwidth.process(buffer);
     outputGain.process(buffer);
 }
 
@@ -164,9 +172,11 @@ void DaKaiAudioProcessor::updateParameters()
 {
     float inputValue = apvts.getRawParameterValue("inputGain")->load();
     float outputValue = apvts.getRawParameterValue("outputGain")->load();
+    float bandwidthValue = apvts.getRawParameterValue("bandwidth")->load();
 
     inputGain.setGain(inputValue);
     outputGain.setGain(outputValue);
+    bandwidth.setTargetSampleRate(bandwidthValue);
 }
 
 //==============================================================================
