@@ -164,6 +164,7 @@ void DaKaiAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
     updateParameters();
     inputGain.process(buffer);
     bitcrusher.process(buffer);
+    aaFilter.process(buffer);
     bandwidth.process(buffer);
     outputGain.process(buffer);
 }
@@ -173,9 +174,11 @@ void DaKaiAudioProcessor::updateParameters()
     float inputValue = apvts.getRawParameterValue("inputGain")->load();
     float outputValue = apvts.getRawParameterValue("outputGain")->load();
     float bandwidthValue = apvts.getRawParameterValue("bandwidth")->load();
+    float trackingCutoff = bandwidthValue * 0.42f;
 
     inputGain.setGain(inputValue);
     outputGain.setGain(outputValue);
+    aaFilter.setFrequency(trackingCutoff);
     bandwidth.setTargetSampleRate(bandwidthValue);
 }
 
