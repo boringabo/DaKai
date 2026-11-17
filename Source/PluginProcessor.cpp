@@ -35,11 +35,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout DaKaiAudioProcessor::createP
     
     // Input Gain
     //
+    juce::NormalisableRange<float> inputGainRange(0.0f, 2.0f, 0.05f);
     parameters.add(std::make_unique<juce::AudioParameterFloat> (
                 juce::ParameterID("inputGain", 1),
                 "Input Gain",
-                0.0f,
-                2.0f,
+                inputGainRange,
                 1.0f));
 
     // Bandwidth
@@ -54,11 +54,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout DaKaiAudioProcessor::createP
 
     // Out Gain
     //
+    juce::NormalisableRange<float> outputGainRange(0.0f, 1.0f, 0.05f);
     parameters.add(std::make_unique<juce::AudioParameterFloat> (
                 juce::ParameterID("outputGain", 1),
                 "Output Gain",
-                0.0f,
-                2.0f,
+                outputGainRange,
                 1.0f));
 
     return parameters;
