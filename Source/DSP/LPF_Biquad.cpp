@@ -10,7 +10,7 @@ void LPF_Biquad::prepare (double inSampleRate)
     updateFilter();
 }
 
-void LPF_Biquad::process (juce::AudioBuffer<float> inBuffer)
+void LPF_Biquad::process (juce::AudioBuffer<float>& inBuffer)
 {
     for (int channel = 0; channel < inBuffer.getNumChannels(); channel++)
     {

@@ -11,7 +11,7 @@ public:
     
     void prepare (double inSampleRate);
     
-    void process (juce::AudioBuffer<float> inBuffer);
+    void process (juce::AudioBuffer<float>& inBuffer);
     float processSample (float inSample, int channel);
     
     void setFrequency (float inFrequency);

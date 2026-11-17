@@ -50,8 +50,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout DaKaiAudioProcessor::createP
     parameters.add(std::make_unique<juce::AudioParameterFloat> (
                 juce::ParameterID("bandwidth", 1),
                 "Bandwidth",
-                44100.0f,
                 7500.0f,
+                44100.0f,
                 44100.0f));
 
     return parameters;
@@ -123,8 +123,13 @@ void DaKaiAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    //
+    // Get channel count
+    int numChannels = getTotalNumInputChannels();
+
+    // Pass Sample Rate
     aaFilter.prepare(sampleRate);
-    bandwidth.prepare(sampleRate);
+    bandwidth.prepare(sampleRate, numChannels);
 }
 
 void DaKaiAudioProcessor::releaseResources()
