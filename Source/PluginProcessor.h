@@ -68,6 +68,9 @@ private:
     Bitcrusher bitcrusher;
     LPF_Biquad aaFilter;
     Bandwidth bandwidth;
+    LPF_Biquad lpfStage1;
+    LPF_Biquad lpfStage2;
+    LPF_Biquad lpfStage3;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DaKaiAudioProcessor)
