@@ -48,8 +48,11 @@ void LPF_Biquad::setQ (float inQ)
 
 void LPF_Biquad::updateFilter()
 {
+    const float maxFreq = static_cast<float>(sampleRate) * 0.42f;
+    const float clampedFreq = juce::jlimit(10.0f, maxFreq, frequency);
+
     // Calcular coeficientes
-    w0 = (TWO_PI * frequency) / static_cast<float>(sampleRate);
+    w0 = (TWO_PI * clampedFreq) / static_cast<float>(sampleRate);
     alpha = sinf(w0) / (2.0f * Q); 
     b0 = (1.0f - cosf(w0)) / 2.0f;
     b1 = 1.0f - cosf(w0);
