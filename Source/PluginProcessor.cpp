@@ -142,13 +142,18 @@ void DaKaiAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     //
     // Get channel count
     int numChannels = getTotalNumInputChannels();
-
+    
     // Pass Sample Rate
     aaFilter.prepare(sampleRate);
     bandwidth.prepare(sampleRate, numChannels);
     lpfStage1.prepare(sampleRate);
     lpfStage2.prepare(sampleRate);
     lpfStage3.prepare(sampleRate);
+ 
+    // Set Q
+    lpfStage1.setQ(0.51763809f);
+    lpfStage2.setQ(0.70710678f);
+    lpfStage3.setQ(1.93185165f);
 
 }
 
