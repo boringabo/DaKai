@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="w2VinD" name="DaKai" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildLV2,buildVST3"
-              lv2Uri="www.example.com/DaKai">
+              lv2Uri="https://miempresa.com/plugins/DaKai">
   <MAINGROUP id="XFon8x" name="DaKai">
     <GROUP id="{876FD2E9-8A4F-DD13-6A62-DAA83736EC5D}" name="Source">
       <FILE id="sggrQK" name="PluginProcessor.cpp" compile="1" resource="0"

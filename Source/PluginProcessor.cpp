@@ -43,6 +43,15 @@ juce::AudioProcessorValueTreeState::ParameterLayout DaKaiAudioProcessor::createP
                 inputGainRange,
                 1.0f));
 
+    // Bitdepth
+    //
+    parameters.add(std::make_unique<juce::AudioParameterInt> (
+                juce::ParameterID("bitDepth", 1),
+                "Bit Depth",
+                4,
+                16,
+                12));
+
     // Bandwidth
     //
     juce::NormalisableRange<float> bandwidthRange(7500.0f, 44100.0f, 1.0f);
@@ -207,18 +216,20 @@ void DaKaiAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::
 void DaKaiAudioProcessor::updateParameters()
 {
     float inputValue = apvts.getRawParameterValue("inputGain")->load();
-    float outputValue = apvts.getRawParameterValue("outputGain")->load();
+    int bitDepthValue = apvts.getRawParameterValue("bitDepth")->load();
     float bandwidthValue = apvts.getRawParameterValue("bandwidth")->load();
     float trackingCutoff = bandwidthValue * 0.42f;
     float cutoffValue = apvts.getRawParameterValue("cutoff")->load();
+    float outputValue = apvts.getRawParameterValue("outputGain")->load();
 
     inputGain.setGain(inputValue);
-    outputGain.setGain(outputValue);
+    bitcrusher.setBitDepth(bitDepthValue);
     aaFilter.setFrequency(trackingCutoff);
     bandwidth.setTargetSampleRate(bandwidthValue);
     lpfStage1.setFrequency(cutoffValue);
     lpfStage2.setFrequency(cutoffValue);
     lpfStage3.setFrequency(cutoffValue);
+    outputGain.setGain(outputValue);
 }
 
 //==============================================================================

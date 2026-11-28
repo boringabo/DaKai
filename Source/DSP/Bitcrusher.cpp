@@ -13,10 +13,15 @@
 
 Bitcrusher::Bitcrusher()
 {
-    numLevels = std::pow(2.0f, bitDepth - 1);
+    setBitDepth(12);
 }
 
 Bitcrusher::~Bitcrusher(){};
+
+void Bitcrusher::setBitDepth(int newBitDepth) {
+    bitDepth = juce::jlimit(4, 16, newBitDepth);
+    numLevels = std::pow(2.0f, bitDepth - 1);
+}
 
 void Bitcrusher::process(juce::AudioBuffer<float>& buffer) {
     for(int channel = 0; channel < buffer.getNumChannels(); channel++)

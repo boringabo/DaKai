@@ -17,6 +17,7 @@ class Bitcrusher
         Bitcrusher();
         ~Bitcrusher();
 
+        void setBitDepth(int newBitDepth);
         void process(juce::AudioBuffer<float>& buffer);
         float processSample(float inputSample);
 
